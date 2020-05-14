@@ -25,7 +25,7 @@ export interface CiscoAmpApiResponse {
 }
 
 export interface ListComputersResponse extends CiscoAmpApiResponse {
-  data: DigiCertDomain[];
+  data: CiscoAmpComputer[];
 }
 
 export type CiscoAmpComputer = Opaque<any, 'CiscoAmpComputer'>;
