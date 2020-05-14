@@ -1,0 +1,12 @@
+{
+  "apiEndpoint": {
+    "type": "string"
+  },
+  "apiClientId": {
+    "type": "string"
+  },
+  "apiKey": {
+    "type": "string",
+    "mask": true
+  }
+}
