@@ -19,12 +19,12 @@ const step: IntegrationStep = {
     const client = createServicesClient(instance);
 
     const accountEntity: Entity = {
-      _key: `cisco_amp_account:${instance.config.id}`,
+      _key: `cisco_amp_account:${instance.id}`,
       _type: 'cisco_amp_account',
       _class: ['Account'],
-      name: instance.config.name,
-      displayName: instance.config.name,
-      description: instance.config.description,
+      name: instance.name,
+      displayName: instance.name,
+      description: instance.description,
     };
     await jobState.addEntities([accountEntity]);
 
