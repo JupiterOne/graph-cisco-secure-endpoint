@@ -52,7 +52,7 @@ Valid API Endpoints for Cisco AMP include:
 
 - api.amp.cisco.com
 - api.apjc.amp.cisco.com
-- api.apjc.amp.cisco.com
+- api.eu.amp.cisco.com
 
 The snake cased environment variables will automatically be converted and
 applied to the camel cased configuration field. So for example, `CLIENT_ID` will
