@@ -6,7 +6,10 @@ import {
 } from '@jupiterone/integration-sdk';
 
 import { createServicesClient } from '../../collector';
-import { convertComputer, mapEndpointProtectionRelationship } from '../../converter';
+import {
+  convertComputer,
+  mapEndpointProtectionRelationship,
+} from '../../converter';
 
 const step: IntegrationStep = {
   id: 'synchronize',
@@ -43,7 +46,7 @@ const step: IntegrationStep = {
     await jobState.addRelationships(accountComputerRelationships);
 
     const endpointProtectionRelationships = computerEntities.map(
-      mapEndpointProtectionRelationship
+      mapEndpointProtectionRelationship,
     );
     await jobState.addRelationships(endpointProtectionRelationships);
   },

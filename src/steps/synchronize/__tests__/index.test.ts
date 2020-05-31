@@ -45,7 +45,7 @@ test('should process computer entities', async () => {
         osName: 'macOS',
         osVersion: '10.15.3',
         hostname: 'erkangs-lifeomic-macbook-2',
-        displayName: 'Erkang’s LifeOmic MacBook (2)'
+        displayName: 'Erkang’s LifeOmic MacBook (2)',
       }),
     ]),
   );

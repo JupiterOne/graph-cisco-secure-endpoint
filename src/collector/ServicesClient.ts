@@ -10,7 +10,7 @@ import {
 } from './types';
 import { URLSearchParams } from 'url';
 
-interface ServicesClientInput {
+export interface ServicesClientInput {
   apiEndpoint: string;
   apiClientId: string;
   apiKey: string;
