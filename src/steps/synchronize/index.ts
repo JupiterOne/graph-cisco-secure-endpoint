@@ -6,12 +6,21 @@ import {
 } from '@jupiterone/integration-sdk';
 
 import { createServicesClient } from '../../collector';
-import { convertComputer } from '../../converter';
+import {
+  convertComputer,
+  mapEndpointProtectionRelationship,
+  ENDPOINT_PROTECTION_RELATIONSHIP,
+} from '../../converter';
 
 const step: IntegrationStep = {
   id: 'synchronize',
   name: 'Fetch Cisco AMP entities',
-  types: ['cisco_amp_account', 'cisco_amp_endpoint'],
+  types: [
+    'cisco_amp_account',
+    'cisco_amp_endpoint',
+    'cisco_amp_account_has_endpoint',
+    ENDPOINT_PROTECTION_RELATIONSHIP
+  ],
   async executionHandler({
     instance,
     jobState,
@@ -41,6 +50,11 @@ const step: IntegrationStep = {
         }),
     );
     await jobState.addRelationships(accountComputerRelationships);
+
+    const endpointProtectionRelationships = computerEntities.map(
+      mapEndpointProtectionRelationship,
+    );
+    await jobState.addRelationships(endpointProtectionRelationships);
   },
 };
 

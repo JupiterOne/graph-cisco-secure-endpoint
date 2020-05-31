@@ -37,10 +37,13 @@ export const convertComputer = (
         id: data.connector_guid,
         name: data.hostname,
         displayName: data.hostname,
+        hostname: normalizeHostname(data.hostname),
         function: ['endpoint-protection', 'anti-malware'],
         hardwareId: data.mac_hardware_id || data.windows_processor_id,
         installedOn: getTime(data.install_date),
         lastSeenOn: getTime(data.last_seen),
+        installDate: undefined,
+        lastSeen: undefined,
         policyId: data.policy?.guid,
         policyName: data.policy?.name,
         version: data.connector_version,
@@ -61,3 +64,10 @@ export const convertComputer = (
     },
   });
 };
+
+function normalizeHostname(hostname: string): string {
+  return hostname
+    .replace(/[!#$%^&*(),?’'":{}|<>]/g, '')
+    .replace(/\s/g, '-')
+    .toLowerCase();
+}
