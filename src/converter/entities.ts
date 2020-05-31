@@ -67,7 +67,7 @@ export const convertComputer = (
 
 function normalizeHostname(hostname: string): string {
   return hostname
-    .replace(/[!#$%^&*(),.?’'":{}|<>]/g, '')
+    .replace(/[!#$%^&*(),?’'":{}|<>]/g, '')
     .replace(/\s/g, '-')
     .toLowerCase();
 }
