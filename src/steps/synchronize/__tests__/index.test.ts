@@ -29,7 +29,7 @@ test('should process computer entities', async () => {
   await step.executionHandler(context);
 
   expect(context.jobState.collectedEntities).toHaveLength(2);
-  expect(context.jobState.collectedRelationships).toHaveLength(1);
+  expect(context.jobState.collectedRelationships).toHaveLength(2);
 
   expect(context.jobState.collectedEntities).toEqual(
     expect.arrayContaining([
@@ -44,6 +44,8 @@ test('should process computer entities', async () => {
         platform: 'darwin',
         osName: 'macOS',
         osVersion: '10.15.3',
+        hostname: 'erkangs-lifeomic-macbook-2',
+        displayName: 'Erkang’s LifeOmic MacBook (2)'
       }),
     ]),
   );
