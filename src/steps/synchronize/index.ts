@@ -19,7 +19,8 @@ const step: IntegrationStep = {
     'cisco_amp_account',
     'cisco_amp_endpoint',
     'cisco_amp_account_has_endpoint',
-    ENDPOINT_PROTECTION_RELATIONSHIP],
+    ENDPOINT_PROTECTION_RELATIONSHIP
+  ],
   async executionHandler({
     instance,
     jobState,
