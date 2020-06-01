@@ -1,5 +1,11 @@
-import { IntegrationInstance } from '@jupiterone/integration-sdk';
-import { ServicesClient, ServicesClientInput } from './ServicesClient';
+import { IntegrationConfig } from 'src/types';
+
+import {
+  IntegrationInstance,
+  IntegrationValidationError,
+} from '@jupiterone/integration-sdk';
+
+import { ServicesClient } from './ServicesClient';
 
 export * from './types';
 
@@ -8,16 +14,12 @@ export * from './types';
  * api key.
  */
 export function createServicesClient(
-  instance: IntegrationInstance,
+  instance: IntegrationInstance<IntegrationConfig>,
 ): ServicesClient {
-  const {
-    apiEndpoint,
-    apiClientId,
-    apiKey,
-  } = instance.config as ServicesClientInput;
+  const { apiEndpoint, apiClientId, apiKey } = instance.config;
 
   if (!apiEndpoint || !apiClientId || !apiKey) {
-    throw new Error(
+    throw new IntegrationValidationError(
       'One of the required configuration items { "apiEndpoint", "apiClientId", "apiKey" } is missing on the integration instance config',
     );
   }
