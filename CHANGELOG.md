@@ -18,6 +18,10 @@ and this project adheres to
 
 - Define `IntegrationConfig` type and add as generic parameter as required.
 
+### Changed
+
+- Upgrade to `@jupiterone/integration-sdk@3.1.0`
+
 ## 0.2.0 - 2020-05-31
 
 ### Added
