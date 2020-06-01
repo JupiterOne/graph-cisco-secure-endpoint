@@ -1,15 +1,17 @@
+import { IntegrationConfig } from 'src/types';
+
 import {
-  IntegrationStep,
-  IntegrationStepExecutionContext,
   createIntegrationRelationship,
   Entity,
+  IntegrationStep,
+  IntegrationStepExecutionContext,
 } from '@jupiterone/integration-sdk';
 
 import { createServicesClient } from '../../collector';
 import {
   convertComputer,
-  mapEndpointProtectionRelationship,
   ENDPOINT_PROTECTION_RELATIONSHIP,
+  mapEndpointProtectionRelationship,
 } from '../../converter';
 
 const step: IntegrationStep = {
@@ -24,7 +26,7 @@ const step: IntegrationStep = {
   async executionHandler({
     instance,
     jobState,
-  }: IntegrationStepExecutionContext) {
+  }: IntegrationStepExecutionContext<IntegrationConfig>) {
     const client = createServicesClient(instance);
 
     const accountEntity: Entity = {
