@@ -50,8 +50,12 @@ export const convertComputer = (
         isolationStatus: data.isolation?.status,
         orbitalStatus: data.orbital?.status,
         networkAddresses: undefined,
-        macAddress: data.network_addresses?.map((a) => a.mac),
-        ipAddress: data.network_addresses?.map((a) => a.ip),
+        macAddress: data.network_addresses
+          ?.map((a) => a.mac)
+          .filter((a) => a.trim().length > 0),
+        ipAddress: data.network_addresses
+          ?.map((a) => a.ip)
+          .filter((a) => a.trim().length > 0),
         publicIp,
         publicIpAddress: publicIp,
         privateIp,
