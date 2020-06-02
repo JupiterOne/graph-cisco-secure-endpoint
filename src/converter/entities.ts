@@ -31,7 +31,7 @@ export const convertComputer = (
       source: data,
       assign: {
         ...convertProperties(data),
-        _key: `cisco_amp_endpoint:${data.connector_guid}`,
+        _key: `cisco-amp-endpoint:${data.connector_guid}`,
         _type: 'cisco_amp_endpoint',
         _class: ['HostAgent'],
         id: data.connector_guid,
