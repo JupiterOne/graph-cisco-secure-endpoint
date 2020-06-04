@@ -3,7 +3,7 @@ import {
   createIntegrationEntity,
   getTime,
   convertProperties,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 
 export const convertComputer = (
   data: CiscoAmpComputer,

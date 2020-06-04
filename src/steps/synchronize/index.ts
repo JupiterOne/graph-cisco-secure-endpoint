@@ -1,11 +1,11 @@
-import { IntegrationConfig } from 'src/types';
+import { IntegrationConfig } from '../../types';
 
 import {
   createIntegrationRelationship,
   Entity,
   IntegrationStep,
   IntegrationStepExecutionContext,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 
 import { createServicesClient } from '../../collector';
 import {

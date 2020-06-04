@@ -8,10 +8,6 @@
     "noUnusedLocals": true,
     "pretty": true,
     "esModuleInterop": true,
-    "baseUrl": ".",
-    "paths": {
-      "test": ["test"]
-    }
   },
   "exclude": ["dist"]
 }

@@ -3,7 +3,7 @@ import {
   Entity,
   Relationship,
   RelationshipDirection,
-} from '@jupiterone/integration-sdk';
+} from '@jupiterone/integration-sdk-core';
 
 export const DEVICE_ENTITY_TYPE = 'user_endpoint';
 export const DEVICE_ENTITY_CLASS = ['Device', 'Host'];
@@ -15,8 +15,8 @@ export const mapEndpointProtectionRelationship = (
 ): Relationship =>
   createIntegrationRelationship({
     _key: `${agent._key}|protects|device:${agent.hardwareId}`,
-    _class: 'PROTECTS',
     _type: ENDPOINT_PROTECTION_RELATIONSHIP,
+    _class: 'PROTECTS',
     _mapping: {
       relationshipDirection: RelationshipDirection.FORWARD,
       sourceEntityKey: agent._key,
