@@ -15,11 +15,8 @@ export const mapEndpointProtectionRelationship = (
 ): Relationship =>
   createIntegrationRelationship({
     _key: `${agent._key}|protects|device:${agent.hardwareId}`,
-    // _type: ENDPOINT_PROTECTION_RELATIONSHIP,
+    _type: ENDPOINT_PROTECTION_RELATIONSHIP,
     _class: 'PROTECTS',
-    properties: {
-      _type: ENDPOINT_PROTECTION_RELATIONSHIP,
-    },
     _mapping: {
       relationshipDirection: RelationshipDirection.FORWARD,
       sourceEntityKey: agent._key,
