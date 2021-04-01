@@ -6,23 +6,39 @@ JupiterOne provides a managed integration for Cisco AMP for Endpoints. The
 integration connects directly to [Cisco AMP for Endpoints REST API][1] to obtain
 endpoint protection and configuration information.
 
-Configure the integration by providing the following details:
+## Cisco AMP + JupiterOne Integration Benefits
 
-- API Endpoint (Hostname)
-- API Client ID
-- API Key
+- Visualize Cisco AMP endpoint agents and the devices they protect in the
+  JupiterOne graph.
+- Map Cisco AMP endpoint agents to devices and devices to the employee who is
+  the owner.  
+- Monitor changes to Cisco AMP endpoints using JupiterOne alerts.
 
-Valid API Endpoints include:
+## How it Works
 
-- `api.amp.cisco.com`
-- `api.apjc.amp.cisco.com`
-- `api.eu.amp.cisco.com`
+- JupiterOne periodically fetches Cisco AMP endpoints and the devices they protect to update the graph.
+- Write JupiterOne queries to review and monitor updates to the graph.
+- Configure alerts to take action when the JupiterOne graph changes.
+
+## Requirements
+
+- JupiterOne requires the endpoint hostname of the Cisco AMP account. 
+The API Client ID and Key are also required 
+- You must have permission in JupiterOne to install new integrations.
+
+## Integration Instance Configuration 
 
 To generating Client ID and API Key:
 
 - Log in to your **AMP for Endpoints Console**.
 - Go to **Accounts** > **API Credentials**.
 - Click **New API Credentials** to generate the Client ID and secure API Key.
+
+Valid API Endpoints include:
+
+- `api.amp.cisco.com`
+- `api.apjc.amp.cisco.com`
+- `api.eu.amp.cisco.com`
 
 ## Entities
 
