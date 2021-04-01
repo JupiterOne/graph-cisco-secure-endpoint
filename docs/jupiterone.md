@@ -23,7 +23,7 @@ endpoint protection and configuration information.
 ## Requirements
 
 - JupiterOne requires the endpoint hostname of the Cisco AMP account. 
-The API Client ID and Key are also required 
+The API Client ID and Key are also required.
 - You must have permission in JupiterOne to install new integrations.
 
 ## Integration Instance Configuration 
