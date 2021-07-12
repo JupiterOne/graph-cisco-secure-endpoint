@@ -1,9 +1,8 @@
 import { createMockStepExecutionContext } from '@jupiterone/integration-sdk-testing';
+import { IntegrationConfig } from '../src/types';
 
-export function createStepContext(): ReturnType<
-  typeof createMockStepExecutionContext
-> {
-  return createMockStepExecutionContext({
+export function createStepContext() {
+  return createMockStepExecutionContext<IntegrationConfig>({
     instanceConfig: {
       apiEndpoint: process.env.API_ENDPOINT || 'api.amp.cisco.com',
       apiClientId: process.env.API_CLIENT_ID || 'test',

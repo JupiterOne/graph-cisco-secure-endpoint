@@ -40,7 +40,7 @@ export class ServicesClient {
   }
 
   async iterateAll(url: string): Promise<CiscoAmpComputer[]> {
-    const data = [];
+    const data: any[] = [];
     const limit = 500;
     let offset = 0;
     let total = 0;
