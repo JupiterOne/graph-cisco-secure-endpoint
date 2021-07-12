@@ -1,7 +1,8 @@
 import {
-  createIntegrationRelationship,
+  createMappedRelationship,
   Entity,
   Relationship,
+  RelationshipClass,
   RelationshipDirection,
 } from '@jupiterone/integration-sdk-core';
 
@@ -13,10 +14,10 @@ export const ENDPOINT_PROTECTION_RELATIONSHIP =
 export const mapEndpointProtectionRelationship = (
   agent: Entity,
 ): Relationship =>
-  createIntegrationRelationship({
+  createMappedRelationship({
     _key: `${agent._key}|protects|device:${agent.hardwareId}`,
     _type: ENDPOINT_PROTECTION_RELATIONSHIP,
-    _class: 'PROTECTS',
+    _class: RelationshipClass.PROTECTS,
     _mapping: {
       relationshipDirection: RelationshipDirection.FORWARD,
       sourceEntityKey: agent._key,
@@ -24,20 +25,20 @@ export const mapEndpointProtectionRelationship = (
       targetEntity: {
         _type: DEVICE_ENTITY_TYPE,
         _class: DEVICE_ENTITY_CLASS,
-        name: agent.name,
+        name: agent.name as string,
         displayName: agent.displayName,
-        hostname: agent.hostname,
-        macAddress: agent.macAddress,
-        osName: agent.osName,
-        osDetails: agent.osDetails,
-        osVersion: agent.osVersion,
-        platform: agent.platform,
-        publicIp: agent.publicIp,
-        publicIpAddress: agent.publicIpAddress,
-        privateIp: agent.privateIp,
-        privateIpAddress: agent.privateIpAddress,
-        active: agent.active,
-        lastSeenOn: agent.lastSeenOn,
+        hostname: agent.hostname as string,
+        macAddress: agent.macAddress as string,
+        osName: agent.osName as string,
+        osDetails: agent.osDetails as string,
+        osVersion: agent.osVersion as string,
+        platform: agent.platform as string,
+        publicIp: agent.publicIp as string,
+        publicIpAddress: agent.publicIpAddress as string,
+        privateIp: agent.privateIp as string,
+        privateIpAddress: agent.privateIpAddress as string,
+        active: agent.active as string,
+        lastSeenOn: agent.lastSeenOn as string,
       },
     },
   });

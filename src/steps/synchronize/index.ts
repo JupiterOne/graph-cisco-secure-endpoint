@@ -1,10 +1,10 @@
 import { IntegrationConfig } from '../../types';
 
 import {
-  createIntegrationRelationship,
+  createDirectRelationship,
   Entity,
   IntegrationStep,
-  IntegrationStepExecutionContext,
+  RelationshipClass,
 } from '@jupiterone/integration-sdk-core';
 
 import { createServicesClient } from '../../collector';
@@ -14,19 +14,36 @@ import {
   mapEndpointProtectionRelationship,
 } from '../../converter';
 
-const step: IntegrationStep = {
+const step: IntegrationStep<IntegrationConfig> = {
   id: 'synchronize',
   name: 'Fetch Cisco AMP entities',
-  types: [
-    'cisco_amp_account',
-    'cisco_amp_endpoint',
-    'cisco_amp_account_has_endpoint',
-    ENDPOINT_PROTECTION_RELATIONSHIP,
+  entities: [
+    {
+      resourceName: 'Account',
+      _type: 'cisco_amp_account',
+      _class: 'Account',
+    },
+    {
+      resourceName: 'Computer',
+      _type: 'cisco_amp_endpoint',
+      _class: 'HostAgent',
+    },
   ],
-  async executionHandler({
-    instance,
-    jobState,
-  }: IntegrationStepExecutionContext<IntegrationConfig>) {
+  relationships: [
+    {
+      _type: 'cisco_amp_account_has_endpoint',
+      sourceType: 'cisco_amp_account',
+      _class: RelationshipClass.HAS,
+      targetType: 'cisco_amp_endpoint',
+    },
+    {
+      _type: ENDPOINT_PROTECTION_RELATIONSHIP,
+      sourceType: 'cisco_amp_endpoint',
+      _class: RelationshipClass.PROTECTS,
+      targetType: 'user_endpoint',
+    },
+  ],
+  async executionHandler({ instance, jobState }) {
     const client = createServicesClient(instance);
 
     const accountEntity: Entity = {
@@ -45,10 +62,10 @@ const step: IntegrationStep = {
 
     const accountComputerRelationships = computerEntities.map(
       (computerEntity) =>
-        createIntegrationRelationship({
+        createDirectRelationship({
           from: accountEntity,
           to: computerEntity,
-          _class: 'HAS',
+          _class: RelationshipClass.HAS,
         }),
     );
     await jobState.addRelationships(accountComputerRelationships);

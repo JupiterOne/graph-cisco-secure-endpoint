@@ -13,7 +13,7 @@ test('rejects if apiKey is not present', async () => {
   fetchMock.mockResponse('{}');
 
   const context = createMockExecutionContext<IntegrationConfig>();
-  context.instance.config['apiKey'] = undefined;
+  context.instance.config.apiKey = undefined as any;
 
   await expect(validateInvocation(context)).rejects.toThrow(
     /Failed to authenticate/,
