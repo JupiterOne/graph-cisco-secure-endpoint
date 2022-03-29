@@ -77,17 +77,13 @@ export function convertNetworkAddressesToArray(
   networkAddressData: NetworkAddress[] | undefined | null,
   key: string,
 ): string[] {
-  // undefined or null data is returned as undefined
-  if (networkAddressData === undefined || networkAddressData === null) {
-    return [];
-  }
-
   if (Array.isArray(networkAddressData)) {
     return networkAddressData
       .map((elem) => elem[key])
       .filter((elem) => typeof elem === 'string' && elem.trim().length > 0);
   }
 
+  // undefined or null data is returned as empty array
   return [];
 }
 
