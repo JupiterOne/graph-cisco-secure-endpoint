@@ -68,8 +68,13 @@ export const convertComputer = (
   });
 };
 
-function convertNetworkAddressesToArray(
-  networkAddressData: string[] | undefined | null,
+interface NetworkAddress {
+  mac?: string;
+  ip?: string;
+}
+
+export function convertNetworkAddressesToArray(
+  networkAddressData: NetworkAddress[] | undefined | null,
   key: string,
 ): string[] {
   // undefined or null data is returned as undefined
@@ -84,9 +89,6 @@ function convertNetworkAddressesToArray(
   }
 
   return [];
-
-  // otherwise first filter all data by that is a string (and not null or undefined)
-  // then that the data is not empty (>0 in length after trimming)
 }
 
 function normalizeHostname(hostname: string): string {

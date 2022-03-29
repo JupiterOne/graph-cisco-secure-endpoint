@@ -1,4 +1,4 @@
-import { convertComputer } from './entities';
+import { convertComputer, convertNetworkAddressesToArray } from './entities';
 
 describe('entity converter tests', () => {
   describe('#convertComputer', () => {
@@ -207,6 +207,54 @@ describe('entity converter tests', () => {
         const convertedEntity = convertComputer(input.data[i]);
         expect(convertedEntity).toEqual(expected[i]);
       }
+    });
+  });
+
+  describe('#convertNetworkAddressesToArray', () => {
+    test('correctly converts null and undefined data', () => {
+      expect(convertNetworkAddressesToArray(undefined, 'test-key')).toEqual([]);
+      expect(convertNetworkAddressesToArray(null, 'test-key')).toEqual([]);
+    });
+
+    test('correctly converts array of good data', () => {
+      const input = [
+        {
+          mac: 'example-mac-1',
+          ip: '0.0.0.0',
+        },
+        {
+          mac: 'example-mac-2',
+          ip: '0.0.0.1',
+        },
+      ];
+
+      expect(convertNetworkAddressesToArray(input, 'ip')).toEqual([
+        '0.0.0.0',
+        '0.0.0.1',
+      ]);
+
+      expect(convertNetworkAddressesToArray(input, 'mac')).toEqual([
+        'example-mac-1',
+        'example-mac-2',
+      ]);
+    });
+
+    test('correctly filters bad data', () => {
+      const input = [
+        {
+          mac: '          ',
+          ip: '              ',
+        },
+      ];
+
+      expect(convertNetworkAddressesToArray(input, 'ip')).toEqual([]);
+      expect(convertNetworkAddressesToArray(input, 'mac')).toEqual([]);
+    });
+
+    test('missing data is ignored', () => {
+      const input = [{}];
+      expect(convertNetworkAddressesToArray(input, 'ip')).toEqual([]);
+      expect(convertNetworkAddressesToArray(input, 'mac')).toEqual([]);
     });
   });
 });
