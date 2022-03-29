@@ -50,16 +50,11 @@ export const convertComputer = (
         isolationStatus: data.isolation?.status,
         orbitalStatus: data.orbital?.status,
         networkAddresses: undefined,
-        macAddress: data.network_addresses
-          ?.map((a) => a.mac)
-          // a.mac may be undefined so we explicitly check that `a` is a string
-          // before we trim `a`
-          .filter((a) => typeof a === 'string' && a.trim().length > 0),
-        ipAddress: data.network_addresses
-          ?.map((a) => a.ip)
-          // a.ip may be undefined so we explicitly check that a is a string
-          // before we trim `a`
-          .filter((a) => typeof a === 'string' && a.trim().length > 0),
+        macAddress: convertNetworkAddressesToArray(
+          data.network_addresses,
+          'mac',
+        ),
+        ipAddress: convertNetworkAddressesToArray(data.network_addresses, 'ip'),
         publicIp,
         publicIpAddress: publicIp,
         privateIp,
@@ -72,6 +67,27 @@ export const convertComputer = (
     },
   });
 };
+
+function convertNetworkAddressesToArray(
+  networkAddressData: string[] | undefined | null,
+  key: string,
+): string[] {
+  // undefined or null data is returned as undefined
+  if (networkAddressData === undefined || networkAddressData === null) {
+    return [];
+  }
+
+  if (Array.isArray(networkAddressData)) {
+    return networkAddressData
+      .map((elem) => elem[key])
+      .filter((elem) => typeof elem === 'string' && elem.trim().length > 0);
+  }
+
+  return [];
+
+  // otherwise first filter all data by that is a string (and not null or undefined)
+  // then that the data is not empty (>0 in length after trimming)
+}
 
 function normalizeHostname(hostname: string): string {
   return hostname
