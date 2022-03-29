@@ -52,10 +52,14 @@ export const convertComputer = (
         networkAddresses: undefined,
         macAddress: data.network_addresses
           ?.map((a) => a.mac)
-          .filter((a) => a.trim().length > 0),
+          // a.mac may be undefined so we explicitly check that `a` is a string
+          // before we trim `a`
+          .filter((a) => typeof a === 'string' && a.trim().length > 0),
         ipAddress: data.network_addresses
           ?.map((a) => a.ip)
-          .filter((a) => a.trim().length > 0),
+          // a.ip may be undefined so we explicitly check that a is a string
+          // before we trim `a`
+          .filter((a) => typeof a === 'string' && a.trim().length > 0),
         publicIp,
         publicIpAddress: publicIp,
         privateIp,
