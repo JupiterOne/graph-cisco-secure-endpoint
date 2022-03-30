@@ -50,12 +50,11 @@ export const convertComputer = (
         isolationStatus: data.isolation?.status,
         orbitalStatus: data.orbital?.status,
         networkAddresses: undefined,
-        macAddress: data.network_addresses
-          ?.map((a) => a.mac)
-          .filter((a) => a.trim().length > 0),
-        ipAddress: data.network_addresses
-          ?.map((a) => a.ip)
-          .filter((a) => a.trim().length > 0),
+        macAddress: convertNetworkAddressesToArray(
+          data.network_addresses,
+          'mac',
+        ),
+        ipAddress: convertNetworkAddressesToArray(data.network_addresses, 'ip'),
         publicIp,
         publicIpAddress: publicIp,
         privateIp,
@@ -68,6 +67,25 @@ export const convertComputer = (
     },
   });
 };
+
+interface NetworkAddress {
+  mac?: string;
+  ip?: string;
+}
+
+export function convertNetworkAddressesToArray(
+  networkAddressData: NetworkAddress[] | undefined | null,
+  key: string,
+): string[] {
+  if (Array.isArray(networkAddressData)) {
+    return networkAddressData
+      .map((elem) => elem[key])
+      .filter((elem) => typeof elem === 'string' && elem.trim().length > 0);
+  }
+
+  // undefined or null data is returned as empty array
+  return [];
+}
 
 function normalizeHostname(hostname: string): string {
   return hostname

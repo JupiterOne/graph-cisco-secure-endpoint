@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed error where `mac` and `ip` properties of computer were `trim()`ed when
+  possibly `undefined`
+
 ## 0.6.0 - 2021-07-12
 
 ### Changed
