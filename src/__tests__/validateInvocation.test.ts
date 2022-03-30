@@ -1,9 +1,9 @@
 import fetchMock from 'jest-fetch-mock';
-import { IntegrationConfig } from '../types';
 
 import { createMockExecutionContext } from '@jupiterone/integration-sdk-testing';
 
 import validateInvocation from '../validateInvocation';
+import { IntegrationConfig } from '../config';
 
 beforeEach(() => {
   fetchMock.doMock();

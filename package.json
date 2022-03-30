@@ -17,12 +17,14 @@
     "start": "yarn collect; yarn graph",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
     "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
+    "format:check": "prettier --check '**/*.{ts,js,json,css,md,yml}'",
     "type-check": "tsc --noEmit",
     "test": "jest --passWithNoTests",
     "test:ci": "yarn lint && yarn type-check && yarn test",
     "prebuild": "yarn test:ci",
     "build": "tsc -p tsconfig.dist.json --declaration",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "prepush": "yarn format:check && yarn lint && yarn type-check && jest --changedSince main"
   },
   "dependencies": {
     "@lifeomic/attempt": "^3.0.0",

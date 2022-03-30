@@ -1,6 +1,5 @@
 import { createMockStepExecutionContext } from '@jupiterone/integration-sdk-testing';
-import { IntegrationConfig } from '../src/types';
-
+import { IntegrationConfig } from '../src/config';
 export function createStepContext() {
   return createMockStepExecutionContext<IntegrationConfig>({
     instanceConfig: {
