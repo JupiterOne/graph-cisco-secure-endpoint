@@ -8,7 +8,25 @@ and this project adheres to
 
 ## [Unreleased]
 
-## 0.7.0
+## 0.7.1 - 2022-03-30
+
+### Changed
+
+- Updated the following dependencies:
+  - `aws-sdk`
+  - `ajv`
+  - `ansi-regex`
+  - `node-fetch`
+  - `lodash-es`
+  - `url-parse`
+  - `tmpl`
+  - `lodash`
+  - `minimist`
+  - `follow-redirects`
+  - `path-parse`
+  - `glob-parent`
+
+## 0.7.0 - 2022-03-30
 
 ### Added
 
