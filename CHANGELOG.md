@@ -12,7 +12,8 @@ and this project adheres to
 
 ### Changed
 
-- Updated the following dependencies:
+- Updated the following dependencies recommended by dependabot. All updates are
+  minor/patch version updates:
   - `aws-sdk`
   - `ajv`
   - `ansi-regex`
