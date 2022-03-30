@@ -8,6 +8,16 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 0.7.0
+
+### Added
+
+- `IntegrationConfig` can now be loaded from `.env`
+
+### Changed
+
+- Upgraded `@jupiterone/integration-sdk-*` to `v8.8.0`
+
 ### Fixed
 
 - Fixed error where `mac` and `ip` properties of computer were `trim()`ed when
