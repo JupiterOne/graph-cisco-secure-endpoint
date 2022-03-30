@@ -1,5 +1,3 @@
-import { IntegrationConfig } from '../../types';
-
 import {
   createDirectRelationship,
   Entity,
@@ -8,6 +6,7 @@ import {
 } from '@jupiterone/integration-sdk-core';
 
 import { createServicesClient } from '../../collector';
+import { IntegrationConfig } from '../../config';
 import {
   convertComputer,
   ENDPOINT_PROTECTION_RELATIONSHIP,

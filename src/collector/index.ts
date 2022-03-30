@@ -1,9 +1,8 @@
-import { IntegrationConfig } from '../types';
-
 import {
   IntegrationInstance,
   IntegrationValidationError,
 } from '@jupiterone/integration-sdk-core';
+import { IntegrationConfig } from '../config';
 
 import { ServicesClient } from './ServicesClient';
 
