@@ -8,6 +8,14 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 0.7.2 - 2022-03-31
+
+### Changed
+
+- Updated the following dependencies recommended by dependabot. All updates are
+  minor version updates:
+  - `axios`
+
 ## 0.7.1 - 2022-03-30
 
 ### Changed
