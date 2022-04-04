@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Endpoint protects device relationship is now correctly classified as a
+  `mappedRelationship`
+
 ## 0.7.2 - 2022-03-31
 
 ### Changed
