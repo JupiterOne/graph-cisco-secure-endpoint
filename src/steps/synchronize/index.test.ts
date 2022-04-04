@@ -1,10 +1,8 @@
-import { createStepContext } from '../../../test';
 import {
   executeStepWithDependencies,
   Recording,
 } from '@jupiterone/integration-sdk-testing';
 
-import step from './index';
 import { setupCiscoAmpRecording } from '../../../test/recording';
 import { buildStepTestConfigForStep } from '../../../test/config';
 import {
@@ -35,9 +33,6 @@ describe('syncronizeStep', () => {
           },
         },
       });
-
-      const context = createStepContext();
-      await step.executionHandler(context);
 
       const stepConfig = buildStepTestConfigForStep(Steps.SYNCHRONIZE);
       const stepResult = await executeStepWithDependencies(stepConfig);
