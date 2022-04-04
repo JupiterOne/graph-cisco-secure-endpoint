@@ -3,7 +3,9 @@ import {
   createIntegrationEntity,
   getTime,
   convertProperties,
+  Entity,
 } from '@jupiterone/integration-sdk-core';
+import { Entities } from '../steps/constants';
 
 export const convertComputer = (
   data: CiscoAmpComputer,
@@ -32,8 +34,8 @@ export const convertComputer = (
       assign: {
         ...convertProperties(data),
         _key: `cisco-amp-endpoint:${data.connector_guid}`,
-        _type: 'cisco_amp_endpoint',
-        _class: ['HostAgent'],
+        _type: Entities.COMPUTER._type,
+        _class: Entities.COMPUTER._class,
         id: data.connector_guid,
         name: data.hostname,
         displayName: data.hostname,
@@ -67,6 +69,37 @@ export const convertComputer = (
     },
   });
 };
+
+/**
+ *
+ * @param id: the instance.id
+ * @param name: the instance.name
+ * @param description: the instance.description
+ * @returns Entity
+ */
+export function createAccountEntity({
+  id,
+  name,
+  description,
+}: {
+  id: string;
+  name: string;
+  description: string | undefined;
+}): Entity {
+  return createIntegrationEntity({
+    entityData: {
+      source: {},
+      assign: {
+        _key: `cisco-amp-account:${id}`,
+        _type: Entities.ACCOUNT._type,
+        _class: Entities.ACCOUNT._class,
+        name: name,
+        displayName: name,
+        description: description,
+      },
+    },
+  });
+}
 
 interface NetworkAddress {
   mac?: string;
