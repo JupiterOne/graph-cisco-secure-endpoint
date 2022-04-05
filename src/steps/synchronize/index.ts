@@ -14,14 +14,16 @@ import {
 } from '../../converter';
 import { Entities, MappedRelationships, Relationships } from '../constants';
 
-const step: IntegrationStep<IntegrationConfig> = {
-  id: 'synchronize',
-  name: 'Fetch Cisco AMP entities',
-  entities: [Entities.ACCOUNT, Entities.COMPUTER],
-  relationships: [Relationships.ACCOUNT_HAS_ENDPOINT],
-  mappedRelationships: [MappedRelationships.ENDPOINT_PROTECTS_DEVICE],
-  executionHandler: synchronize,
-};
+export const synchronizeSteps: IntegrationStep<IntegrationConfig>[] = [
+  {
+    id: 'synchronize',
+    name: 'Fetch Cisco AMP entities',
+    entities: [Entities.ACCOUNT, Entities.COMPUTER],
+    relationships: [Relationships.ACCOUNT_HAS_ENDPOINT],
+    mappedRelationships: [MappedRelationships.ENDPOINT_PROTECTS_DEVICE],
+    executionHandler: synchronize,
+  },
+];
 
 export async function synchronize({
   instance,
@@ -51,5 +53,3 @@ export async function synchronize({
     );
   });
 }
-
-export default step;

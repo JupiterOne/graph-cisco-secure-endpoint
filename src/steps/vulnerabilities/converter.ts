@@ -17,6 +17,11 @@ export function createVulnerabilityEntity(vuln: CiscoAmpVulnerability): Entity {
         displayName: vuln.application,
         sha256: vuln.file.identity.sha256,
         category: 'application',
+        severity: null,
+        blocking: null,
+        open: null,
+        production: null,
+        public: null,
       },
     },
   });
