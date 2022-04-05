@@ -1,9 +1,9 @@
 import { CiscoAmpComputer } from '../collector';
 import {
   createIntegrationEntity,
-  getTime,
   convertProperties,
   Entity,
+  parseTimePropertyValue,
 } from '@jupiterone/integration-sdk-core';
 import { Entities } from '../steps/constants';
 
@@ -41,9 +41,9 @@ export const convertComputer = (
         displayName: data.hostname,
         hostname: normalizeHostname(data.hostname),
         function: ['endpoint-protection', 'anti-malware'],
-        hardwareId: data.mac_hardware_id || data.windows_processor_id,
-        installedOn: getTime(data.install_date),
-        lastSeenOn: getTime(data.last_seen),
+        hardwareId: data.windows_processor_id,
+        installedOn: parseTimePropertyValue(data.install_date),
+        lastSeenOn: parseTimePropertyValue(data.last_seen),
         installDate: undefined,
         lastSeen: undefined,
         policyId: data.policy?.guid,

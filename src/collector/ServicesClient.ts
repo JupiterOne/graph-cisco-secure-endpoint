@@ -4,9 +4,9 @@ import base64 from 'base-64';
 
 import { retryableRequestError, fatalRequestError } from './error';
 import {
-  ListComputersResponse,
   CiscoAmpComputer,
   CiscoAmpApiResponse,
+  CiscoAmpVulnerability,
 } from './types';
 import { URLSearchParams } from 'url';
 
@@ -15,6 +15,8 @@ export interface ServicesClientInput {
   apiClientId: string;
   apiKey: string;
 }
+
+export type ResourceIteratee<T> = (each: T) => Promise<void>;
 
 /**
  * Services Api
@@ -31,28 +33,71 @@ export class ServicesClient {
     )}`;
   }
 
-  getVersion(): Promise<CiscoAmpApiResponse> {
+  /**
+   * Gets Cisco AMP Api version
+   * @returns Promise<CiscoAmpApiResponse<Record<string, never>>>
+   */
+  getVersion(): Promise<CiscoAmpApiResponse<Record<string, never>>> {
     return this.fetch('/v1/version');
   }
 
-  iterateComputers(): Promise<CiscoAmpComputer[]> {
-    return this.iterateAll('/v1/computers');
+  /**
+   * iterateComputers iterates over all computers
+   * and calls the provided `ResourceIteratee` for each Computer.
+   *
+   * @param fn ResourceIteratee that will be called for each Computer
+   * @returns Promise<void>
+   */
+  async iterateComputers(
+    fn: ResourceIteratee<CiscoAmpComputer>,
+  ): Promise<void> {
+    return await this.createResourceIterator('/v1/computers')(fn);
   }
 
-  async iterateAll(url: string): Promise<CiscoAmpComputer[]> {
-    const data: any[] = [];
+  /**
+   * iterateVulnerabilities iterates over all vulnerabilities
+   * and calls the provided `ResourceIteratee` for each vulnerability.
+   *
+   * @param fn ResourceIteratee function tha will be called for each Vulnerability
+   * @returns Promise<void>
+   */
+  async iterateVulnerabilities(
+    fn: ResourceIteratee<CiscoAmpVulnerability>,
+  ): Promise<void> {
+    return await this.createResourceIterator('/v1/vulnerabilities')(fn);
+  }
+
+  /**
+   * createResourceIterator creates a function that will paginate the resources
+   * and call the provided `ResourceIteratee` for each resource.
+   *
+   * @param url the url whose resources will be iterated
+   * @returns a function that will call ResourceIteratee for each resource
+   */
+  createResourceIterator(
+    url: string,
+  ): <T>(fn: ResourceIteratee<T>) => Promise<void> {
     const limit = 500;
     let offset = 0;
     let total = 0;
-    do {
-      const response: ListComputersResponse = await this.fetch(url, {
-        offset: offset.toString(),
-      });
-      total = response.metadata.results.total;
-      offset += limit;
-      data.push(...response.data);
-    } while (offset < total);
-    return data;
+
+    return async <T>(fn: ResourceIteratee<T>): Promise<void> => {
+      do {
+        const response: CiscoAmpApiResponse<T> = await this.fetch(url, {
+          offset: offset.toString(),
+        });
+        total = response.metadata.results.total;
+        offset += limit;
+
+        if (Array.isArray(response.data)) {
+          for (const data of response.data) {
+            await fn(data);
+          }
+        } else {
+          await fn(response.data);
+        }
+      } while (offset < total);
+    };
   }
 
   fetch<T = object>(

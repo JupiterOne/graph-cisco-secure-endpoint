@@ -5,7 +5,7 @@ import {
   RelationshipClass,
 } from '@jupiterone/integration-sdk-core';
 
-import { createServicesClient } from '../../collector';
+import { CiscoAmpComputer, createServicesClient } from '../../collector';
 import { IntegrationConfig } from '../../config';
 import {
   convertComputer,
@@ -35,23 +35,21 @@ export async function synchronize({
       description: instance.description,
     }),
   );
-  const computers = await client.iterateComputers();
-  const computerEntities = computers.map(convertComputer);
-  await jobState.addEntities(computerEntities);
 
-  const accountComputerRelationships = computerEntities.map((computerEntity) =>
-    createDirectRelationship({
-      from: accountEntity,
-      to: computerEntity,
-      _class: RelationshipClass.HAS,
-    }),
-  );
-  await jobState.addRelationships(accountComputerRelationships);
+  await client.iterateComputers(async (computer: CiscoAmpComputer) => {
+    const computerEntity = await jobState.addEntity(convertComputer(computer));
+    await jobState.addRelationship(
+      createDirectRelationship({
+        from: accountEntity,
+        to: computerEntity,
+        _class: RelationshipClass.HAS,
+      }),
+    );
 
-  const endpointProtectionRelationships = computerEntities.map(
-    mapEndpointProtectionRelationship,
-  );
-  await jobState.addRelationships(endpointProtectionRelationships);
+    await jobState.addRelationship(
+      mapEndpointProtectionRelationship(computerEntity),
+    );
+  });
 }
 
 export default step;
