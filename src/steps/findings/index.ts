@@ -22,7 +22,9 @@ export async function fetchVulnerabilities({
         vulnEntity = await jobState.addEntity(createVulnerabilityEntity(cve));
       }
 
-      // This case should be handled in the future with IterateComputersWithVulnerability
+      // When there are over 1000 computers, only the first 1000 will appear on
+      // the vulnerability response. This case should be handled by
+      // using IterateComputersWithVulnerability
       if (vuln.computers_total_count > 1000) {
         logger.warn(
           'More than 1000 computers have vulnerability. API Response only contains first 1000 computers with vulnerability.',

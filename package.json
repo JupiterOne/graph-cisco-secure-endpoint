@@ -14,7 +14,7 @@
   "scripts": {
     "collect": "j1-integration collect",
     "graph": "j1-integration visualize",
-    "start": "yarn collect; yarn graph",
+    "start": "yarn collect --disable-schema-validation",
     "lint": "eslint . --cache --fix --ext .ts,.tsx",
     "format": "prettier --write '**/*.{ts,js,json,css,md,yml}'",
     "format:check": "prettier --check '**/*.{ts,js,json,css,md,yml}'",
