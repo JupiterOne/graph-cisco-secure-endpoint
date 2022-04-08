@@ -64,6 +64,26 @@ export interface CiscoAmpComputer {
   };
 }
 
+// A condensed Computer resource received from the
+// /vulnerabilities/:sha265:/computers endpoint
+export interface CiscoAmpComputerWithVulnerability {
+  connector_guid: string;
+  hostname: string;
+  windows_processor_id: string;
+  active: boolean;
+  links: {
+    computer: string;
+    trajectory: string;
+    group: string;
+  };
+}
+
+export interface CVE {
+  id: string;
+  link: string;
+  cvss: number;
+}
+
 export interface CiscoAmpVulnerability {
   application: string;
   version: string;
@@ -73,11 +93,7 @@ export interface CiscoAmpVulnerability {
       sha256: string;
     };
   };
-  cves: {
-    id: string;
-    link: string;
-    cvss: number;
-  }[];
+  cves: CVE[];
   latest_timestamp: number;
   latest_date: string;
   groups: {
@@ -86,7 +102,7 @@ export interface CiscoAmpVulnerability {
     guid: string;
   }[];
   computers_total_count: number;
-  computers?: {
+  computers: {
     connector_guid: string;
     hostname: string;
     windows_processor_id: string;

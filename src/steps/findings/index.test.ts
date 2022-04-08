@@ -17,7 +17,7 @@ describe('fetchVulnerabilitiesSteps', () => {
         directory: __dirname,
         name: 'fetchVulnerabilities',
       });
-      const stepConfig = buildStepTestConfigForStep(Steps.VULNERABILITIES);
+      const stepConfig = buildStepTestConfigForStep(Steps.FINDINGS);
       const stepResult = await executeStepWithDependencies(stepConfig);
       expect(stepResult).toMatchStepMetadata(stepConfig);
     });

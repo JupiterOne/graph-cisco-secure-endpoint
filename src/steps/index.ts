@@ -1,6 +1,6 @@
 import { synchronizeSteps } from './synchronize';
-import { fetchVulnerabilitiesSteps } from './vulnerabilities';
+import { fetchFindingsSteps } from './findings';
 
-const integrationSteps = [...synchronizeSteps, ...fetchVulnerabilitiesSteps];
+const integrationSteps = [...synchronizeSteps, ...fetchFindingsSteps];
 
 export { integrationSteps };

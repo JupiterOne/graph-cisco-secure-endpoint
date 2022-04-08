@@ -7,6 +7,7 @@ import {
   CiscoAmpComputer,
   CiscoAmpApiResponse,
   CiscoAmpVulnerability,
+  CiscoAmpComputerWithVulnerability,
 } from './types';
 import { URLSearchParams } from 'url';
 
@@ -65,6 +66,25 @@ export class ServicesClient {
     fn: ResourceIteratee<CiscoAmpVulnerability>,
   ): Promise<void> {
     return await this.createResourceIterator('/v1/vulnerabilities')(fn);
+  }
+
+  /**
+   * iteratesComputersWithVulnerability iterates computers with a vulnerability
+   * identified by a sha256 hash.
+   *
+   * This is useful when a vulnerability is present on more than 1000 computers
+   * as the `/v1/vulnerabilities` response will only contain the first 1000
+   *
+   * @param sha256 The sha256 hash of the vulnerability
+   * @returns Promise<void>
+   */
+  async iterateComputersWithVulnerability(
+    sha256: string,
+    fn: ResourceIteratee<CiscoAmpComputerWithVulnerability>,
+  ): Promise<void> {
+    return await this.createResourceIterator(
+      `/v1/vulnerabilities/${sha256}/computers`,
+    )(fn);
   }
 
   /**
