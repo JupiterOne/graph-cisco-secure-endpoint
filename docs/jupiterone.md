@@ -82,7 +82,7 @@ NOTE: ALL OF THE FOLLOWING DOCUMENTATION IS GENERATED USING THE
 "j1-integration document" COMMAND. DO NOT EDIT BY HAND! PLEASE SEE THE DEVELOPER
 DOCUMENTATION FOR USAGE INFORMATION:
 
-https://github.com/JupiterOne/sdk/blob/master/docs/integrations/development.md
+https://github.com/JupiterOne/sdk/blob/main/docs/integrations/development.md
 ********************************************************************************
 -->
 
@@ -92,19 +92,30 @@ https://github.com/JupiterOne/sdk/blob/master/docs/integrations/development.md
 
 The following entities are created:
 
-| Resources | Entity `_type`       | Entity `_class` |
-| --------- | -------------------- | --------------- |
-| Account   | `cisco_amp_account`  | `Account`       |
-| Computer  | `cisco_amp_endpoint` | `HostAgent`     |
+| Resources     | Entity `_type`       | Entity `_class` |
+| ------------- | -------------------- | --------------- |
+| Account       | `cisco_amp_account`  | `Account`       |
+| Computer      | `cisco_amp_endpoint` | `HostAgent`     |
+| Finding       | `cisco_amp_finding`  | `Finding`       |
+| Vulnerability | `cve`                | `Vulnerability` |
 
 ### Relationships
 
-The following relationships are created/mapped:
+The following relationships are created:
 
 | Source Entity `_type` | Relationship `_class` | Target Entity `_type` |
 | --------------------- | --------------------- | --------------------- |
 | `cisco_amp_account`   | **HAS**               | `cisco_amp_endpoint`  |
-| `cisco_amp_endpoint`  | **PROTECTS**          | `user_endpoint`       |
+| `cisco_amp_endpoint`  | **IDENTIFIED**        | `cisco_amp_finding`   |
+| `cisco_amp_endpoint`  | **IS**                | `cisco_amp_account`   |
+
+### Mapped Relationships
+
+The following mapped relationships are created:
+
+| Source Entity `_type` | Relationship `_class` | Target Entity `_type` | Direction |
+| --------------------- | --------------------- | --------------------- | --------- |
+| `cisco_amp_endpoint`  | **PROTECTS**          | `*user_endpoint*`     | FORWARD   |
 
 <!--
 ********************************************************************************
