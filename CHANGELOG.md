@@ -8,7 +8,24 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.0.0 - 2022-04-11
+
+### Added
+
+- Added new findings step creating the following entities and relationships:
+
+  - `cisco_amp_finding`
+  - `cisco_amp_vulnerability`
+  - `cisco_amp_finding_is_vulnerability`
+  - `cisco_amp_endpoint_identified_finding`
+
+- Added `getStepStartStates` which disables the `findings` step by default. To
+  enable this step, the IntegrationConfig must have `disableFindingsStep` =
+  false.
+
 ### Changed
+
+- Client now uses `iterateResources` pattern for all steps.
 
 - Endpoint protects device relationship is now correctly classified as a
   `mappedRelationship`
