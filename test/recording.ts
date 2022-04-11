@@ -1,4 +1,5 @@
 import {
+  mutations,
   Recording,
   setupRecording,
   SetupRecordingInput,
@@ -10,6 +11,7 @@ export function setupCiscoAmpRecording(
   return setupRecording({
     ...input,
     mutateEntry: (entry) => {
+      mutations.unzipGzippedRecordingEntry(entry);
       redact(entry);
     },
   });

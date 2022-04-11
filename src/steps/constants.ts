@@ -8,11 +8,11 @@ import {
 
 export const Steps = {
   SYNCHRONIZE: 'synchronize',
-  VULNERABILITIES: 'fetch-vulnerabilities',
+  FINDINGS: 'fetch-findings',
 };
 
 export const Entities: Record<
-  'ACCOUNT' | 'COMPUTER' | 'VULNERABILITY',
+  'ACCOUNT' | 'COMPUTER' | 'FINDING' | 'VULNERABILITY',
   StepEntityMetadata
 > = {
   ACCOUNT: {
@@ -52,15 +52,51 @@ export const Entities: Record<
       },
     },
   },
+  FINDING: {
+    resourceName: 'Finding',
+    _type: 'cisco_amp_finding',
+    _class: ['Finding'],
+    schema: {
+      additionalProperties: true,
+      properties: {
+        _type: { const: 'cisco_amp_finding' },
+        _key: { type: 'string' },
+        name: { type: 'string' }, // cve.id
+        displayName: { type: 'string' }, // cve.id
+        application: { type: 'string' },
+        filename: { type: 'string' },
+        fileSha256: { type: 'string' },
+        webLink: { type: 'string' },
+        severity: { type: 'string' },
+        numericSeverity: { type: 'number' },
+      },
+    },
+  },
   VULNERABILITY: {
     resourceName: 'Vulnerability',
-    _type: 'cisco_amp_vulnerability',
+    _type: 'cve',
     _class: ['Vulnerability'],
+    schema: {
+      properties: {
+        additionalProperties: {
+          _type: { const: 'cve' },
+          _key: { type: 'string' },
+          name: { type: 'string' },
+          displayName: { type: 'string' },
+          severity: { type: 'string' },
+          category: { type: 'string', const: 'application' },
+          webLink: { type: 'string' },
+        },
+      },
+      required: ['severity', 'webLink'],
+    },
   },
 };
 
 export const Relationships: Record<
-  'ACCOUNT_HAS_ENDPOINT',
+  | 'ACCOUNT_HAS_ENDPOINT'
+  | 'COMPUTER_IDENTIFIED_FINDING'
+  | 'FINDING_IS_VULNERABILITY',
   StepRelationshipMetadata
 > = {
   ACCOUNT_HAS_ENDPOINT: {
@@ -68,6 +104,18 @@ export const Relationships: Record<
     sourceType: Entities.ACCOUNT._type,
     _class: RelationshipClass.HAS,
     targetType: Entities.COMPUTER._type,
+  },
+  COMPUTER_IDENTIFIED_FINDING: {
+    _type: 'cisco_amp_endpoint_identified_finding',
+    sourceType: Entities.COMPUTER._type,
+    _class: RelationshipClass.IDENTIFIED,
+    targetType: Entities.FINDING._type,
+  },
+  FINDING_IS_VULNERABILITY: {
+    _type: 'cisco_amp_finding_is_cve',
+    sourceType: Entities.COMPUTER._type,
+    _class: RelationshipClass.IS,
+    targetType: Entities.ACCOUNT._type,
   },
 };
 
