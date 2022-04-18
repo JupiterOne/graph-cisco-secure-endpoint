@@ -113,9 +113,9 @@ export const Relationships: Record<
   },
   FINDING_IS_VULNERABILITY: {
     _type: 'cisco_amp_finding_is_cve',
-    sourceType: Entities.COMPUTER._type,
+    sourceType: Entities.FINDING._type,
     _class: RelationshipClass.IS,
-    targetType: Entities.ACCOUNT._type,
+    targetType: Entities.VULNERABILITY._type,
   },
 };
 
