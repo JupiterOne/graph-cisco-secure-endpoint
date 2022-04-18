@@ -1,4 +1,4 @@
-# graph-cisco-amp
+# graph-cisco-secure-endpoint
 
 ## Development Environment
 
@@ -48,7 +48,7 @@ API_CLIENT_ID=<client-id>
 API_KEY=<secret>
 ```
 
-Valid API Endpoints for Cisco AMP include:
+Valid API Endpoints for Cisco Secure Endpoint include:
 
 - api.amp.cisco.com
 - api.apjc.amp.cisco.com
