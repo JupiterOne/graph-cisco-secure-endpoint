@@ -107,7 +107,7 @@ The following relationships are created:
 | --------------------- | --------------------- | --------------------- |
 | `cisco_amp_account`   | **HAS**               | `cisco_amp_endpoint`  |
 | `cisco_amp_endpoint`  | **IDENTIFIED**        | `cisco_amp_finding`   |
-| `cisco_amp_endpoint`  | **IS**                | `cisco_amp_account`   |
+| `cisco_amp_finding`   | **IS**                | `cve`                 |
 
 ### Mapped Relationships
 
