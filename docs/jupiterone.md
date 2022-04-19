@@ -17,8 +17,8 @@
 
 ## Requirements
 
-- JupiterOne requires the endpoint hostname of the Cisco Secure account. The API
-  Client ID and Key are also required.
+- JupiterOne requires the endpoint hostname of the Cisco Secure Endpoint
+  account. The API Client ID and Key are also required.
 - You must have permission in JupiterOne to install new integrations.
 
 ## Support
