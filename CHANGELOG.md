@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Changed
+
+- Project name changed from `@jupiterone/graph-cisco-amp` to
+  `@jupiterone/graph-cisco-secure-endpoint`
+
 ## 1.0.1 - 2022-04-19
 
 ### Fixed

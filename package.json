@@ -1,7 +1,7 @@
 {
-  "name": "@jupiterone/graph-cisco-amp",
+  "name": "@jupiterone/graph-cisco-secure-endpoint",
   "version": "1.0.1",
-  "description": "A graph conversion tool for https://www.cisco.com/c/en/us/products/security/amp-for-endpoints/",
+  "description": "A graph conversion tool for https://www.cisco.com/site/us/en/products/security/endpoint-security/secure-endpoint/index.html",
   "license": "MPL-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
