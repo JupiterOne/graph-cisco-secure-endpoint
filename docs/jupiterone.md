@@ -28,10 +28,10 @@ If you need help with this integration, please contact
 
 ## Integration Walkthrough
 
-The integration connects directly to [Cisco AMP for Endpoints REST API][1] to
+The integration connects directly to [Cisco Secure Endpoint REST API][1] to
 obtain endpoint protection and configuration information.
 
-## In Cisco AMP
+## In Cisco Secure Endpoint
 
 To generate a Client ID and API Key:
 
