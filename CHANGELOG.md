@@ -8,6 +8,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed `FINDING_IS_VULNERABILITY` constant. `sourceType` is now
+  `cisco_amp_finding` and `targetType` is now `cve`.
+
 ## 1.0.0 - 2022-04-11
 
 ### Added
