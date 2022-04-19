@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 1.0.1 - 2022-04-19
+
 ### Fixed
 
 - Fixed `FINDING_IS_VULNERABILITY` constant. `sourceType` is now
