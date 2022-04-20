@@ -8,6 +8,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 2.0.0 - 2022-04-20
+
 ### Changed
 
 - Project name changed from `@jupiterone/graph-cisco-amp` to
