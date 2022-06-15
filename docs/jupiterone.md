@@ -1,4 +1,4 @@
-# Integration with JupiterOne
+# Cisco Secure Endpoint Integration with JupiterOne
 
 ## Cisco Secure Endpoint + JupiterOne Integration Benefits
 
