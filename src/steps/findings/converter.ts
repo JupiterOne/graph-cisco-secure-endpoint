@@ -88,7 +88,7 @@ export function createFindingEntity(
         filename: vuln.file.filename,
         fileSha256: vuln.file.identity.sha256,
         // these are specific to the vulnerability not the computer?
-        lastSeenOn: parseTimePropertyValue(vuln.latest_timestamp),
+        lastSeenOn: parseTimePropertyValue(vuln.latest_timestamp, 'ms'),
       },
     },
   });
