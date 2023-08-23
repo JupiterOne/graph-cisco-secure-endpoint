@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 2.0.1 - 2023-08-23
+
+### Changed
+
+- Upgrade SDK packages
+
 ## 2.0.0 - 2022-04-20
 
 ### Changed
