@@ -1,6 +1,6 @@
 {
   "name": "@jupiterone/graph-cisco-secure-endpoint",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A graph conversion tool for https://www.cisco.com/site/us/en/products/security/endpoint-security/secure-endpoint/index.html",
   "license": "MPL-2.0",
   "main": "dist/index.js",
