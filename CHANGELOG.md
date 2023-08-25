@@ -8,6 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 2.0.3 - 2022-08-25
+
+### Added
+
+- `questions` workflow
+- `jupiterone/questions/questions.yaml`
+
 ## 2.0.1 - 2023-08-23
 
 ### Changed
