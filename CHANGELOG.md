@@ -8,6 +8,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## 2.0.4 - 2022-08-28
+
+### Fixed
+
+- Fixed package build
+
 ## 2.0.3 - 2022-08-25
 
 ### Added
