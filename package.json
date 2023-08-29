@@ -5,6 +5,7 @@
   "license": "MPL-2.0",
   "main": "src/index.js",
   "types": "src/index.d.ts",
+  "repository": "https://github.com/JupiterOne/graph-cisco-secure-endpoint",
   "files": [
     "src",
     "jupiterone"
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "@lifeomic/attempt": "^3.0.0",
+    "auto": "^10.46.0",
     "base-64": "^0.1.0",
     "node-fetch": "^2.6.0"
   },
@@ -43,5 +45,21 @@
   },
   "peerDependencies": {
     "@jupiterone/integration-sdk-core": "^8.41.0"
+  },
+  "auto": {
+    "plugins": [
+      [
+        "npm",
+        {
+          "setRcToken": false,
+          "publishFolder": "."
+        }
+      ],
+      "released"
+    ],
+    "onlyPublishWithReleaseLabel": true,
+    "shipit": {
+      "prerelease": false
+    }
   }
 }
