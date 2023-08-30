@@ -5,6 +5,7 @@
   "license": "MPL-2.0",
   "main": "src/index.js",
   "types": "src/index.d.ts",
+  "repository": "https://github.com/JupiterOne/graph-cisco-secure-endpoint",
   "files": [
     "src",
     "jupiterone"
@@ -28,10 +29,12 @@
     "build": "tsc -p tsconfig.dist.json --declaration && cp README.md dist/README.md && cp -r jupiterone/ dist/jupiterone/",
     "prepush": "yarn format:check && yarn lint && yarn type-check && jest --changedSince main",
     "validate:questions": "j1-integration validate-question-file -a $MANAGED_QUESTIONS_JUPITERONE_ACCOUNT_ID -k $MANAGED_QUESTIONS_JUPITERONE_API_KEY",
-    "validate:questions:dry": "j1-integration validate-question-file --dry-run"
+    "validate:questions:dry": "j1-integration validate-question-file --dry-run",
+    "postversion": "cp package.json ./dist/package.json"
   },
   "dependencies": {
     "@lifeomic/attempt": "^3.0.0",
+    "auto": "^10.46.0",
     "base-64": "^0.1.0",
     "node-fetch": "^2.6.0"
   },
@@ -43,5 +46,21 @@
   },
   "peerDependencies": {
     "@jupiterone/integration-sdk-core": "^8.41.0"
+  },
+  "auto": {
+    "plugins": [
+      [
+        "npm",
+        {
+          "setRcToken": false,
+          "publishFolder": "./dist"
+        }
+      ],
+      "released"
+    ],
+    "onlyPublishWithReleaseLabel": true,
+    "shipit": {
+      "prerelease": false
+    }
   }
 }

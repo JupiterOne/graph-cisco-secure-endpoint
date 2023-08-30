@@ -1,7 +1,10 @@
 node_modules/
 .j1-integration/
+.j1-integration-cache/
 .env
 dist/
 
 .eslintcache
 yarn-error.log
+tsconfig.tsbuildinfo
+.npmrc
