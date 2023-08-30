@@ -1,3 +1,16 @@
+# v2.0.5 (Wed Aug 30 2023)
+
+#### 🐛 Bug Fix
+
+- INT-9221 - add auto release and adjust workflows [#68](https://github.com/JupiterOne/graph-cisco-secure-endpoint/pull/68) (ronald.arias@contractor.jupiterone.com)
+- v2.0.4 [#67](https://github.com/JupiterOne/graph-cisco-secure-endpoint/pull/67) (ronald.arias@contractor.jupiterone.com)
+
+#### Authors: 1
+
+- Ronald Arias ([@RonaldEAM](https://github.com/RonaldEAM))
+
+---
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
