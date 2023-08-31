@@ -39,7 +39,11 @@ export async function synchronize({
   );
 
   await client.iterateComputers(async (computer: CiscoAmpComputer) => {
-    const computerEntity = await jobState.addEntity(convertComputer(computer));
+    const computerEntity = convertComputer(computer);
+    if (jobState.hasKey(computerEntity._key)) {
+      return;
+    }
+    await jobState.addEntity(computerEntity);
     await jobState.addRelationship(
       createDirectRelationship({
         from: accountEntity,
