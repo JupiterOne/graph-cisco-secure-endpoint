@@ -1,3 +1,15 @@
+# v2.0.6 (Fri Sep 01 2023)
+
+#### 🐛 Bug Fix
+
+- INT-9221 - fix duplicate endpoint entity error [#69](https://github.com/JupiterOne/graph-cisco-secure-endpoint/pull/69) (ronald.arias@contractor.jupiterone.com)
+
+#### Authors: 1
+
+- Ronald Arias ([@RonaldEAM](https://github.com/RonaldEAM))
+
+---
+
 # v2.0.5 (Wed Aug 30 2023)
 
 #### 🐛 Bug Fix
