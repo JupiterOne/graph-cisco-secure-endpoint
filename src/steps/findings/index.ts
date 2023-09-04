@@ -32,32 +32,37 @@ export async function fetchVulnerabilities({
       }
 
       for (const comp of vuln.computers) {
-        const findingEntity = await jobState.addEntity(
-          createFindingEntity(vuln, cve, comp),
-        );
-        await jobState.addRelationship(
-          createDirectRelationship({
-            from: findingEntity,
-            to: vulnEntity,
-            _class: Relationships.FINDING_IS_VULNERABILITY._class,
-          }),
-        );
+        const findingEntity = createFindingEntity(vuln, cve, comp);
+        if (!jobState.hasKey(findingEntity._key)) {
+          await jobState.addEntity(findingEntity);
+        }
 
-        const compEntity = await jobState.findEntity(
-          `cisco-amp-endpoint:${comp.connector_guid}`,
-        );
-        if (compEntity) {
-          await jobState.addRelationship(
-            createDirectRelationship({
-              from: compEntity,
-              to: findingEntity,
-              _class: Relationships.COMPUTER_IDENTIFIED_FINDING._class,
-            }),
-          );
-        } else {
+        const findingVulnRelationship = createDirectRelationship({
+          _class: Relationships.FINDING_IS_VULNERABILITY._class,
+          from: findingEntity,
+          to: vulnEntity,
+        });
+        if (!jobState.hasKey(findingVulnRelationship._key)) {
+          await jobState.addRelationship(findingVulnRelationship);
+        }
+
+        const compEntityKey = `cisco-amp-endpoint:${comp.connector_guid}`;
+        if (!jobState.hasKey(compEntityKey)) {
           logger.error(
             `Computer Entity with key, cisco-amp-endpoint:${comp.connector_guid}, is missing from jobState.`,
           );
+          continue;
+        }
+
+        const compFindingRelationship = createDirectRelationship({
+          _class: Relationships.COMPUTER_IDENTIFIED_FINDING._class,
+          fromKey: compEntityKey,
+          fromType: Entities.COMPUTER._type,
+          toKey: findingEntity._key,
+          toType: Entities.FINDING._type,
+        });
+        if (!jobState.hasKey(compFindingRelationship._key)) {
+          await jobState.addRelationship(compFindingRelationship);
         }
       }
     }
@@ -66,7 +71,7 @@ export async function fetchVulnerabilities({
 
 export const fetchFindingsSteps = [
   {
-    id: 'fetch-findings',
+    id: Steps.FINDINGS,
     name: 'Fetch Cisco AMP findings',
     entities: [Entities.FINDING, Entities.VULNERABILITY],
     relationships: [
