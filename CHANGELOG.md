@@ -1,3 +1,15 @@
+# v2.0.7 (Mon Sep 04 2023)
+
+#### 🐛 Bug Fix
+
+- INT-9221 - fix findings duplicate key [#70](https://github.com/JupiterOne/graph-cisco-secure-endpoint/pull/70) (ronald.arias@contractor.jupiterone.com)
+
+#### Authors: 1
+
+- Ronald Arias ([@RonaldEAM](https://github.com/RonaldEAM))
+
+---
+
 # v2.0.6 (Fri Sep 01 2023)
 
 #### 🐛 Bug Fix
