@@ -1,0 +1,14 @@
+openapi: 3.0.1
+info:
+  title: '@jupiterone/graph-cisco-secure-endpoint'
+  description: >-
+    A graph conversion tool for
+    https://www.cisco.com/site/us/en/products/security/endpoint-security/secure-endpoint/index.html
+  x-cortex-git:
+    github:
+      repository: JupiterOne/graph-cisco-secure-endpoint
+  x-cortex-owners:
+    - type: group
+      name: JupiterOne/integrations
+  x-cortex-service-groups: tier-4
+  x-cortex-tag: '@jupiterone/graph-cisco-secure-endpoint'
